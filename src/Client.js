@@ -233,9 +233,11 @@ class Client extends EventEmitter {
 
                     // Verify if the Store was injected
                     if (!reinject) {
+                        console.log('Passou no reinject');
                         return;
                     }
                     
+                    console.log('Não passou no reinject');
                     // Se for necessário reinjetar, primeiro remova os eventos antigos
                     await this.pupPage.evaluate(() => {
                         if (typeof window.onPollVoteEvent !== 'undefined') {
