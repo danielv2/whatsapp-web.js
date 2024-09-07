@@ -231,7 +231,15 @@ class Client extends EventEmitter {
                     //Load util functions (serializers, helper functions)
                     await this.pupPage.evaluate(LoadUtils);
 
+                    // Verify if the Store was injected
+                    await this.pupPage.evaluate(() => {
+                        if (window.onPollVoteEvent) {
+                            delete window.onPollVoteEvent;
+                        }
+                    });
+
                     await this.attachEventListeners(reinject);
+
                     reinject = true;
                 }
                 /**
